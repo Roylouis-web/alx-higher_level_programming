@@ -7,4 +7,4 @@ def uppercase(str):
             out += chr(l)
         else:
             out += i
-    print(f"{out}")
+    print("{:s}".format(out))
