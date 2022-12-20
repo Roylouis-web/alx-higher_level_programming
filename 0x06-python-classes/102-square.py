@@ -14,17 +14,53 @@ class Square:
         if self.__validate_size(size):
             self.__size = size
 
+    def __eq__(self, other):
+        """
+        used by == to check equality
+        """
+        return (self.area() == other.area())
+
+    def __ne__(self, other):
+        """
+        used by != to check equality
+        """
+        return (self.area() != other.area())
+
+    def __lt__(self, other):
+        """
+        used by < to check equality
+        """
+        return (self.area() < other.area())
+
+    def __le__(self, other):
+        """
+        used by <= to check equality
+        """
+        return (self.area() <= other.area())
+
+    def __gt__(self, other):
+        """
+        used by > to check equality
+        """
+        return (self.area() > other.area())
+
+    def __ge__(self, other):
+        """
+        used by >= to check equality
+        """
+        return (self.area() >= other.area())
+
     @property
     def size(self):
         """
-        getter for the size property
+        getter for size attribute
         """
         return self.__size
 
     @size.setter
     def size(self, value):
         """
-        setter for the size property
+        setter for size attribute
         """
         if self.__validate_size(value):
             self.__size = value
@@ -34,17 +70,6 @@ class Square:
         calculates the area of the square
         """
         return self.__size ** 2
-
-    def my_print(self):
-        """
-        prints the square using '#' characters
-        """
-        i = 0
-        for i in range(0, self.__size):
-            j = 0
-            for j in range(0, self.__size):
-                print("#", end='')
-            print()
 
     def __validate_size(self, size):
         """

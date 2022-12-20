@@ -16,6 +16,29 @@ class Square:
         if self.__validate_pos(position):
             self.__position = position
 
+    def __str__(self):
+        """
+        used by print and str.
+        returns a string of user friendly printable
+        """
+        i = 0
+        string = ""
+        if self.__size == 0:
+            string += '\n'
+            return
+        for i in range(0, self.__position[1]):
+            string += '\n'
+        i = 0
+        for i in range(0, self.__size):
+            j = 0
+            x_pad = 0
+            for x_pad in range(0, self.__position[0]):
+                string += ' '
+            for j in range(0, self.__size):
+                string += '#'
+            string += '\n'
+        return string
+
     @property
     def size(self):
         """
