@@ -1,24 +1,31 @@
->>> text_indentation = __import__('5-text_indentation').text_indentation
+====================================
+UNIT TESTS FOR 5-text_indentation.py
+====================================
 
->>> text_indentation('A')
-A
 
->>> text_indentation(123)
+>>> text_ind = __import__('5-text_indentation').text_indentation
+>>> text_ind("hello:world?")
+hello:
+<BLANKLINE>
+world?
+<BLANKLINE>
+
+>>> text_ind("hello:::world?")
+hello:
+<BLANKLINE>
+:
+<BLANKLINE>
+:
+<BLANKLINE>
+world?
+<BLANKLINE>
+
+>>> text_ind(42)
 Traceback (most recent call last):
-        ...
-TypeError:  text must be a string
+	...
+TypeError: text must be a string
 
->>> text_indentation()
-Traceback (most recent call last):
-        ...
-TypeError: text_indentation() missing 1 required positional argument: 'text'
+>>> text_ind("hello")
+hello
 
->>> text_indentation("My name is Le Roy. My age: 17. What is your name again ?")
-My name is Le Roy.
-<BLANKLINE>
- My age:
-<BLANKLINE>
- 17.
-<BLANKLINE>
- What is your name again ?
-<BLANKLINE>
+
