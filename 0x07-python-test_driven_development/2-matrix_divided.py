@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+ python program to divide two
+ or more matrices.
+ """
 
 
 def matrix_divided(matrix, div):
