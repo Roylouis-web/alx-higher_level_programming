@@ -14,12 +14,6 @@ class Rectangle(BaseGeometry):
     """
 
     def __init__(self, width, height):
-        """ 
-            Initialises the attributes 
-            of the class Rectangle
-        """
-
-
         super().__init__()
         self.__width = width
         self.__height = height
