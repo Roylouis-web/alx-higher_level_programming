@@ -4,6 +4,7 @@
      file (UTF8) and prints it to stdout:
 """
 
+
 def read_file(filename=""):
     """
     param filename: source file
