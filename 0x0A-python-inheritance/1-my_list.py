@@ -18,5 +18,4 @@ class MyList(list):
         """
 
         if issubclass(self, Mylist):
-            copy = self.copy()
-            print(sorted(copy))
+            print(sorted(self))
