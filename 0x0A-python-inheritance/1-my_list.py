@@ -19,4 +19,5 @@ class MyList(list):
 
         if issubclass(MyList, list):
             copy = self.copy()
-            print(sorted(copy))
+            copy.sort()
+            print(copy)
