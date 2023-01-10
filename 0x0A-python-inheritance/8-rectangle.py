@@ -14,10 +14,7 @@ class Rectangle(BaseGeometry):
     """
 
     def __init__(self, width, height):
-        """
-            initialisation of the
-            private attributes
-        """
+        super().__init__()
         self.__width = width
         self.__height = height
         self.integer_validator("width", self.__width)
