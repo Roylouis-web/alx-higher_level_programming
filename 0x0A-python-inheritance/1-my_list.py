@@ -6,7 +6,9 @@
 
 class MyList(list):
     """
-    class MyList that inherits from list
+    Attribute:
+    print_sorted: prints the elements
+    of the Mylist obj in ascending order
     """
 
     def print_sorted(self):
