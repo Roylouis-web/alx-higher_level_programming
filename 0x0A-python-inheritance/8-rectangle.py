@@ -33,11 +33,8 @@ class Rectangle(BaseGeometry):
     """
 
     def __init__(self, width, height):
-        """
-            initialisation of the
-            private attributes
-        """
-        self.__width = width
-        self.__height = height
+
         super().integer_validator("width", self.__width)
         super().integer_validator("height", self.__height)
+        self.__width = width
+        self.__height = height
