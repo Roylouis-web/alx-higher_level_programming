@@ -16,6 +16,4 @@ class MyList(list):
         prints a sorted list
         in ascending order
         """
-
-        if issubclass(MyList, list):
             print(sorted(self))
