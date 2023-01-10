@@ -1,18 +1,13 @@
 #!/usr/bin/python3
-import json
+"""module for deserializing json data back to python objects
+"""
 
-"""
-     a function that returns an object
-     (Python data structure) represented
-     by a JSON string:
-"""
+
+import json
 
 
 def from_json_string(my_str):
+    """deserializes a JSON string back to a python object
+        -> handles NO exceptions
     """
-    param my_str: JSON String
-    return: An object represented by
-    a JSON String
-    """
-
     return json.loads(my_str)
