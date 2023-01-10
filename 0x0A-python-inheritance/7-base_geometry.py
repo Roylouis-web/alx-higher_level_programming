@@ -1,30 +1,26 @@
 #!/usr/bin/python3
 """
-    a class BaseGeometry
-    (based on 6-base_geometry.py).
+    A non empty class called BaseGeometry
+    that inherits from a super class Object
+    and raises an error when area method is
+    called and also validates the parameter
+    'value'
 """
 
 
-class BaseGeometry(object):
-    """
-        a class BaseGeometry
-        (based on 6-base_geometry.py).
+class BaseGeometry():
+    """for use with shapes. Super class.
     """
 
     def area(self):
-        """
-            raises an Exception with the
-            message area() is not implemented
+        """instance method to calculate area of shape
         """
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
+        """validates integer input
         """
-            validates the value passed
-            into the function as argument
-        """
-
-        if type(value) is not int:
-            raise TypeError(name +  ' ' + 'must be an integer')
+        if type(value) != int:
+            raise TypeError(name + " must be an integer")
         elif value <= 0:
-            raise ValueError(name + ' ' + 'must be greater than 0')
+            raise ValueError(name + " must be greater than 0")
