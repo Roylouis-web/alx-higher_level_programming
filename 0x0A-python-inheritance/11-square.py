@@ -8,7 +8,7 @@
 """
 
 
-class BaseGeometry():
+class BaseGeometry(object):
     """for use with shapes. Super class.
     """
 
