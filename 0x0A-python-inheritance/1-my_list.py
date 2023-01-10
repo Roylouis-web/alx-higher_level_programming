@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-
+""" 
+    A class called Mylist 
+    that inherits from a base class
+    'list' and prints a sorted list
+    in ascending order
+"""
 class MyList(list):
     """
     Attribute:
