@@ -1,7 +1,14 @@
 #!/usr/bin/python3
+"""
+    an empty class
+    called BaseGeometry
+"""
 
 
-class BaseGeometry():
-    """for use with shapes. Super class.
+class BaseGeometry(object):
     """
+         an empty class
+         called BaseGeometry
+    """
+
     pass

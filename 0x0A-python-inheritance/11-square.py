@@ -1,22 +1,32 @@
 #!/usr/bin/python3
-
-
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 Rectangle = __import__('9-rectangle').Rectangle
+
+"""
+    Write a class Square that inherits
+    from Rectangle (9-rectangle.py)
+"""
 
 
 class Square(Rectangle):
-    """square shape class, super class is BaseGeometry, then Rectangle
     """
+        Write a class Square that inherits
+        from Rectangle (9-rectangle.py)
+    """
+
     def __init__(self, size):
-        """instantiation method for class
         """
-        super().__init__(size, size)
-        self.integer_validator("size", size)
+            initialisation of the
+            private attribute size
+        """
         self.__size = size
+        super().__init__(size, size)
+        super().integer_validator("size", self.__size)
 
     def __str__(self):
-        """overide magic str method for class
         """
-        string = "[Square] " + str(self.__size) + '/'
-        string += str(self.__size)
-        return string
+            returns the following rectangle
+            description: [Square] <width>/<height>
+        """
+
+        return "[Square] {:d}/{:d}".format(self.__size, self.__size)
