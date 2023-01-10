@@ -17,6 +17,6 @@ class MyList(list):
         in ascending order
         """
 
-        if issubclass(self, Mylist)
+        if issubclass(self, Mylist):
             copy = self.copy()
             print(sorted(copy))
