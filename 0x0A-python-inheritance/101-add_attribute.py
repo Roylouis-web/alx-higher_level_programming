@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+ an attribute to the class if possible
+         -> aka is
+"""
 
 
 def add_attribute(obj, name, value):
