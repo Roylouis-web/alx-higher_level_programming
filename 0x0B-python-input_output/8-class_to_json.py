@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+    creates a json representation of an object without using
+    json module. One liner!! (without pep8 fix) :D
+"""
 
 
 def class_to_json(obj):
