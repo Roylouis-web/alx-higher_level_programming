@@ -1,7 +1,10 @@
 #!/usr/bin/python3
+""" reads a text file (UTF-8)
+    and prints it to stdout
+ """
 
 
-def read_file(filename=""):
+def text file(UTF-8):
     """reads a text file (UTF-8)
         and prints it to stdout
     """
