@@ -1,11 +1,31 @@
 #!/usr/bin/python3
-"""module for taking arguments and adds to a list, saves to file
+"""module for use in writing json strings to files
 """
 
 
-import sys
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
+import json
+
+
+def save_to_json_file(my_obj, filename):
+    """saves obj to a file, overwriting previous contents
+        -> handles NO exceptions
+        -> encoded as utf-8
+       Return: number of bytes written to file.
+    """
+    with open(filename, 'w', encoding='utf-8') as myFile:
+        return myFile.write(json.dumps(my_obj))
+
+
+"""module for loading data from .json files
+"""
+
+
+def load_from_json_file(filename):
+    """loads an object from json file containing json string
+        -> handles NO exceptions
+    """
+    with open(filename, encoding='utf-8') as myFile:
+        return (json.loads(myFile.read()))
 
 
 def main():
@@ -21,5 +41,6 @@ def main():
         save_to_json_file(new_list, 'add_item.json')
     except:
         pass
+
 
 main()
