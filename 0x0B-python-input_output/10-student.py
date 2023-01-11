@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 
 
+"""
+Write a class Student
+"""
+
+
 class Student:
     """student class for use
     """
