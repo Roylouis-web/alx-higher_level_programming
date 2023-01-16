@@ -1,153 +1,136 @@
 #!/usr/bin/python3
+"""
+A module that test differents behaviors
+of the Base class
+"""
 import unittest
+import pep8
+from models.base import Base
 from models.rectangle import Rectangle
-
-"""
-    Module for class
-    TestRectangle
-"""
 
 
 class TestRectangle(unittest.TestCase):
     """
-        Tests all possible outcomes
-        of the class Rectangle
+    A class to test the Rectangle Class
     """
-
-    def test_id_default(self):
+    def test_pep8_base(self):
         """
-            tests output of
-            default id
+        Test that checks PEP8
         """
+        syntax = pep8.StyleGuide(quit=True)
+        check = syntax.check_files(['models/rectangle.py'])
+        self.assertEqual(
+            check.total_errors, 0,
+            "Found code style errors (and warnings)."
+        )
 
+    def test_rectangle_subclass(self):
+        """
+        Test if Rectangle class inherit from
+        Base class
+        """
+        self.assertTrue(issubclass(Rectangle, Base))
+
+    def test_parameters(self):
+        """
+        Test parameters for Rectangle class
+        """
         r1 = Rectangle(10, 2)
         r2 = Rectangle(2, 10)
-        self.assertEqual(r1.id, 3)
-        self.assertEqual(r2.id, r1.id + 1)
+        r3 = Rectangle(10, 2, 0, 0, 12)
 
-    def test_id_given(self):
-        """
-            tests output when
-            id is given
-        """
-
-        r1 = Rectangle(10, 2, 0, 0, 12)
-        r2 = Rectangle(2, 10, 2, 5, 9)
-        self.assertEqual(r1.id, 12)
-        self.assertEqual(r2.id, 9)
-
-    def test_type_error(self):
-        """
-             tests for type error
-             among the attributes
-        """
+        self.assertEqual(r1.id, 4)
+        self.assertEqual(r1.width, 10)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+        self.assertEqual(r2.id, 5)
+        self.assertEqual(r2.width, 2)
+        self.assertEqual(r2.height, 10)
+        self.assertEqual(r2.x, 0)
+        self.assertEqual(r2.y, 0)
+        self.assertEqual(r3.id, 12)
+        self.assertEqual(r3.width, 10)
+        self.assertEqual(r3.height, 2)
+        self.assertEqual(r3.x, 0)
+        self.assertEqual(r3.y, 0)
 
         with self.assertRaises(TypeError):
-            r1 = Rectangle("str", 10.67)
-        with self.assertRaises(TypeError):
-            r1 = Rectangle(1, "meat")
-        with self.assertRaises(TypeError):
-            r1 = Rectangle(True, True)
-        with self.assertRaises(TypeError):
-            r1 = Rectangle([1, 2, 3], None)
-        with self.assertRaises(TypeError):
-            r1 = Rectangle(2, {"one": 1, "two": 2}, None, False, 89)
-        with self.assertRaises(TypeError):
-            r1 = Rectangle(7, 8, (12, 78), {1, 2, 4})
-        with self.assertRaises(TypeError):
-            r1 = Rectangle(1, 2, 3.8, 9.8)
+            r4 = Rectangle()
 
-    def test_value_error(self):
+    def test_string(self):
         """
-            test attributes of a
-            class for value error
+        Test string parameters for a
+        Rectangle class
         """
+        with self.assertRaises(TypeError):
+            Rectangle('Monty', 'Python')
+
+    def test_type_param(self):
+        """
+        Test different types of parameters
+        for a Rectangle class
+        """
+        with self.assertRaises(TypeError):
+            Rectangle(1.01, 3)
+            raise TypeError()
 
         with self.assertRaises(ValueError):
-            r1 = Rectangle(-10, 2)
-        with self.assertRaises(ValueError):
-            r1 = Rectangle(10, -2)
-        with self.assertRaises(ValueError):
-            r1 = Rectangle(0, 0)
-        with self.assertRaises(ValueError):
-            r1 = Rectangle(2, 8, -9, -8, 29)
+            Rectangle(-234234242, 45)
+            raise ValueError()
 
-    def test_area(self):
-        """
-            tests the area of
-            the object
-        """
-
-        r1 = Rectangle(3, 2)
-        r2 = Rectangle(2, 10)
-        self.assertEqual(r1.area(), 6)
-        self.assertEqual(r2.area(), 20)
-
-    def test__str__(self):
-        """
-            Test for the output of
-            __str__ magic function
-        """
-
-        r1 = Rectangle(4, 6, 2, 1, 12)
-
-        self.assertEqual(str(r1), '[Rectangle] (12) 2/1 - 4/6')
-
-    def test_update_args(self):
-        """
-        Tests for updates of the
-        attributes of rectangle class
-        """
-        r1 = Rectangle(10, 10, 10, 10)
-        r1.update(89, 2, 3, 4, 5)
-        self.assertEqual(r1.id, 89)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.x, 4)
-        self.assertEqual(r1.y, 5)
         with self.assertRaises(TypeError):
-            r1.update(89, "str", 3, 4, 5)
-        with self.assertRaises(TypeError):
-            r1.update(89, 2, 3, [1, 2, 3], 5)
-        with self.assertRaises(ValueError):
-            r1.update(89, -2, 3, 4, -5)
-        with self.assertRaises(ValueError):
-            r1.update(89, 2, -3, -4, 5)
+            Rectangle('', 4)
+            raise TypeError()
 
-    def test_update_kwargs(self):
-        """
-            test for updates of the attributes
-            of the class using kwargs
-        """
-
-        r1 = Rectangle(10, 10, 10, 10)
-        r1.update(height=1)
-        self.assertEqual(r1.height, 1)
-        r1.update(1, 2, 3, 4, 5, 6, 7, 8,  width=1, x=2)
-        self.assertEqual(r1.id, 1)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.x, 4)
-        self.assertEqual(r1.y, 5)
-        r1.update(y=1, width=2, x=3, id=89)
-        self.assertEqual(r1.y, 1)
-        self.assertEqual(r1.width, 2)
-        self.assertEqual(r1.height, 3)
-        self.assertEqual(r1.id, 89)
         with self.assertRaises(TypeError):
-            r1.update(width="str", height=3, x=4, y=5)
-        with self.assertRaises(TypeError):
-            r1.update(x=89, y=2, height=15, id=5, width=[1, 2, 3])
-        with self.assertRaises(ValueError):
-            r1.update(height=-2, x=3, y=4, width=-5)
-        with self.assertRaises(ValueError):
-            r1.update(y=89, id=2, x=-3, width=-4, height=5)
+            Rectangle(True, 4)
+            raise TypeError()
 
-    def test_to_dictionary(self):
-        """
-            tests if output is equal
-        """
-        r1 = Rectangle(1, 2, 3, 4, 5)
-        dic = r1.to_dictionary()
-        self.assertEqual(dic,
-                         {'x': 3, 'y': 4, 'width': 1, 'height': 2, 'id': 5})
+        with self.assertRaises(TypeError):
+            Rectangle(5, 1.76)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, "Hello")
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, False)
+            raise TypeError()
+
+        with self.assertRaises(ValueError):
+            Rectangle(5, -4798576398576)
+            raise ValueError
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 1, 1.50)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 6, "test")
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 7, False)
+            raise TypeError()
+
+        with self.assertRaises(ValueError):
+            Rectangle(5, 7, -4798576398576)
+            raise ValueError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 1, 1, 1.53)
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 6, 5, "test")
+            raise TypeError()
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 7, 7, False)
+            raise TypeError()
+
+        with self.assertRaises(ValueError):
+            Rectangle(5, 9, 5, -4798576398576)
+            raise ValueError()

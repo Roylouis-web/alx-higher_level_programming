@@ -1,231 +1,163 @@
 #!/usr/bin/python3
-from models.base import Base
+"""
+...
+"""
 
-"""
-    A module for a class
-    called Rectangle
-"""
+from models.base import Base
 
 
 class Rectangle(Base):
     """
-        A class Rectangle that inherits
-        from the Base class
+    ...
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
+        """
+        ...
+        """
         super().__init__(id)
-        if self.validate_width(width):
-            self.__width = width
-        if self.validate_height(height):
-            self.__height = height
-        if self.validate_x(x):
-            self.__x = x
-        if self.validate_y(y):
-            self.__y = y
+
+        self.check_integer_parameter(width, 'width')
+        self.check_integer_parameter(height, 'height')
+        self.check_integer_parameter(x, 'x')
+        self.check_integer_parameter(y, 'y')
+
+        self.__width = width
+        self.__height = height
+        self.__x = x
+        self.__y = y
 
     @property
     def width(self):
         """
-        return: the value assigned
-        to the private instance attribute
-        'width'
+        ...
         """
         return self.__width
 
     @width.setter
-    def width(self, width):
+    def width(self, param):
         """
-        sets the value of the private
-        instance attribute 'width'
+        ...
         """
+        self.check_integer_parameter(param, 'width')
 
-        if self.validate_width(width):
-            self.__width = width
-
-    @staticmethod
-    def validate_width(width):
-        if type(width) is not int:
-            raise TypeError("width must be an integer")
-        elif width <= 0:
-            raise ValueError('width must be > 0')
-        else:
-            return True
+        self.__width = param
 
     @property
     def height(self):
         """
-        return: the value assigned
-        to the private instance attribute
-        'height'
+        ...
         """
         return self.__height
 
     @height.setter
-    def height(self, height):
+    def height(self, param):
         """
-        sets the value of the private
-        instance attribute 'height'
+        ...
         """
+        self.check_integer_parameter(param, 'height')
 
-        if self.validate_width(height):
-            self.__height = height
-
-    @staticmethod
-    def validate_height(height):
-        if type(height) is not int:
-            raise TypeError("height must be an integer")
-        elif height <= 0:
-            raise ValueError("height must be > 0")
-        else:
-            return True
+        self.__height = param
 
     @property
     def x(self):
         """
-        return: the value assigned
-        to the private instance attribute
-        'x'
+        ...
         """
         return self.__x
 
     @x.setter
-    def x(self, x):
+    def x(self, param):
         """
-        sets the value of the private
-        instance attribute 'x'
+        ...
         """
+        self.check_integer_parameter(param, 'x')
 
-        if self.validate_x(x):
-            self.__x = x
-
-    @staticmethod
-    def validate_x(x):
-        if type(x) is not int:
-            raise TypeError("x must be an integer")
-        elif x < 0:
-            raise ValueError("x must be >= 0")
-        else:
-            return True
+        self.__x = param
 
     @property
     def y(self):
         """
-        return: the value assigned
-        to the private instance attribute
-        'y'
+        ...
         """
-
         return self.__y
 
     @y.setter
-    def y(self, y):
+    def y(self, param):
         """
-        sets the value of the private
-        instance attribute 'y'
+        ...
         """
+        self.check_integer_parameter(param, 'y')
 
-        if self.validate_width(y):
-            self.__y = y
+        self.__y = param
 
-    @staticmethod
-    def validate_y(y):
+    def check_integer_parameter(self, value, param):
         """
-            validates the value
-            passed to assigned to y
+        ...
         """
+        if type(value) is not int:
+            raise TypeError(param + ' must be an integer')
 
-        if type(y) is not int:
-            raise TypeError("y must be an integer")
-        elif y < 0:
-            raise ValueError("y must be >= 0")
-        else:
-            return True
+        if value <= 0 and param in ('width', 'height'):
+            raise ValueError(param + ' must be > 0')
+
+        if value < 0 and param in ('x', 'y'):
+            raise ValueError(param + ' must be >= 0')
 
     def area(self):
         """
-        return: The area of the object
+        ...
         """
-
-        height = self.__height
-        width = self.__width
-
-        return height * width
+        return self.__width * self.__height
 
     def display(self):
         """
-            prints in stdout the Rectangle
-            instance with the character '#'
+        ...
         """
-        print('\n' * self.__y, end='')
-        for i in range(0, self.__height):
-            for line in range(0, self.__x):
-                print(' ', end='')
-            for j in range(0, self.__width):
-                if j == self.__width - 1:
-                    print('#')
-                else:
-                    print('#', end='')
+        if self.__y > 0:
+            print('\n' * self.__y, end='')
+
+        for i in range(self.height):
+            if self.__x > 0:
+                print(' ' * self.__x, end='')
+
+            print('#' * self.__width)
 
     def __str__(self):
-        id = self.id
-        x = self.__x
-        y = self.__y
-        w = self.__width
-        h = self.__height
-        name = self.__class__.__name__
-        return "[{:s}] ({:d}) {:d}/{:d} - {:d}/{:d}".format(name,
-                                                            id, x, y, w, h)
+        """
+        ...
+        """
+        return '[Rectangle] ({:d}) {:d}/{:d} - {:d}/{:d}'.format(
+            self.id, self.x, self.y, self.width, self.height
+        )
 
     def update(self, *args, **kwargs):
         """
-        assigns an argument to each attribute
-        param args: unlimited arguments to be
-        passed into the function
-        return: Nothing
+        ...
         """
+        argc = len(args)
+        kwargc = len(kwargs)
+        modif_attrs = ['id', 'width', 'height', 'x', 'y']
 
-        for i in range(0, len(args)):
-            if i == 0:
-                self.id = args[i]
-            if i == 1:
-                if self.validate_width(args[i]):
-                    self.__width = args[i]
-            if i == 2:
-                if self.validate_height(args[i]):
-                    self.__height = args[i]
-            if i == 3:
-                if self.validate_x(args[i]):
-                    self.__x = args[i]
-            if i == 4:
-                if self.validate_y(args[i]):
-                    self.__y = args[i]
+        if argc > 5:
+            argc = 5
 
-        if not args:
-            if 'width' in kwargs:
-                if self.validate_width(kwargs['width']):
-                    self.__width = kwargs['width']
-            if 'height' in kwargs:
-                if self.validate_width(kwargs['height']):
-                    self.__height = kwargs['height']
-            if 'id' in kwargs:
-                self.id = kwargs['id']
-            if 'x' in kwargs:
-                if self.validate_width(kwargs['x']):
-                    self.__x = kwargs['x']
-            if 'y' in kwargs:
-                if self.validate_width(kwargs['y']):
-                    self.__y = kwargs['y']
+        if argc > 0:
+            for i in range(argc):
+                setattr(self, modif_attrs[i], args[i])
+        elif kwargc > 0:
+            for k, v in kwargs.items():
+                if k in modif_attrs:
+                    setattr(self, k, v)
 
     def to_dictionary(self):
         """
-            returns the dictionary representation of a Rectangle
+        ...
         """
-        old = self.__dict__
         return {
-            'x': old['_Rectangle__x'],
-            'y': old['_Rectangle__y'],
-            'id': old['id'],
-            'height': old['_Rectangle__height'],
-            'width': old['_Rectangle__width'],
+            'id': self.id,
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
         }

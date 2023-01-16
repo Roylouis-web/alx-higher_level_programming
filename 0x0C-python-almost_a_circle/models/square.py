@@ -1,98 +1,71 @@
 #!/usr/bin/python3
-from models.rectangle import Rectangle
+"""
+...
+"""
 
-"""
-    Module for a class
-    called Square
-"""
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
     """
-        class Square that inherits
-        from class Rectangle
+    ...
     """
 
     def __init__(self, size, x=0, y=0, id=None):
+        """
+        ...
+        """
         super().__init__(size, size, x, y, id)
-        self.__size = size
 
     def __str__(self):
         """
-             returns readable information
-             about the Square Object
+        ...
         """
-
-        id = self.id
-        x = self.x
-        y = self.y
-        w = self.__size
-        name = self.__class__.__name__
-        return "[{:s}] ({:d}) {:d}/{:d} - {:d}".format(name,
-                                                       id, x, y, w)
+        return '[Square] ({:d}) {:d}/{:d} - {:d}'.format(
+            self.id, self.x, self.y, self.width
+        )
 
     @property
     def size(self):
         """
-            gets the size of the
-            Square Object
+        ...
         """
-
-        return self.__size
+        return self.width
 
     @size.setter
-    def size(self, size):
+    def size(self, value):
         """
-            sets the size of
-            the Square Object
+        ...
         """
-
-        if self.validate_width(size):
-            self.width = size
-            self.height = size
+        self.width = value
+        self.height = value
 
     def update(self, *args, **kwargs):
         """
-        assigns an argument to each attribute
-        param args: unlimited arguments to be
-        passed into the function
-        return: Nothing
+        ...
         """
+        argc = len(args)
+        kwargc = len(kwargs)
+        modif_attrs = ['id', 'size', 'x', 'y']
 
-        for i in range(0, len(args)):
-            if i == 0:
-                self.id = args[i]
-            if i == 1:
-                if self.validate_width(args[i]):
-                    self.__size = args[i]
-            if i == 2:
-                if self.validate_x(args[i]):
-                    self.x = args[i]
-            if i == 3:
-                if self.validate_y(args[i]):
-                    self.y = args[i]
+        if argc > 4:
+            argc = 4
 
-        if not args:
-            if 'size' in kwargs:
-                if self.validate_width(kwargs['size']):
-                    self.__size = kwargs['size']
-            if 'id' in kwargs:
-                self.id = kwargs['id']
-            if 'x' in kwargs:
-                if self.validate_x(kwargs['x']):
-                    self.x = kwargs['x']
-            if 'y' in kwargs:
-                if self.validate_y(kwargs['y']):
-                    self.y = kwargs['y']
+        if argc > 0:
+            for i in range(argc):
+                setattr(self, modif_attrs[i], args[i])
+        elif kwargc > 0:
+            for k, v in kwargs.items():
+                if k in modif_attrs:
+                    setattr(self, k, v)
 
     def to_dictionary(self):
         """
-            returns the dictionary representation of a Rectangle
+        ...
         """
-        old = self.__dict__
         return {
-            'id': old['id'],
-            'x': old['_Rectangle__x'],
-            'size': old['_Square__size'],
-            'y': old['_Rectangle__y'],
+            'id': self.id,
+            'size': self.size,
+            'x': self.x,
+            'y': self.y
         }
