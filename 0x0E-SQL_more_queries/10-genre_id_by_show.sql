@@ -3,5 +3,5 @@
 
 SELECT DISTINCT `tv_shows`.`title`, `tv_show_genres`.`genre_id` FROM `tv_shows`
 JOIN `tv_show_genres`
-ON `tv_show_genres`.`genre_id` >= 1
+ON `tv_show_genres`.`genre_id` = `tv_shows`.`title`
 ORDER BY `tv_shows`.`title`, `tv_show_genres`.`genre_id` ASC;
