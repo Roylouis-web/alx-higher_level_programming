@@ -4,10 +4,9 @@
  */
 
 const list = require('./100-data').list;
-const arr = [];
-
-for (let i = 0; i < list.length; i++) {
-  arr.push(list[i] * i);
-}
+let i = 0;
+const arr = list.map((elem) => {
+  return elem * i++;
+});
 console.log(list);
 console.log(arr);
