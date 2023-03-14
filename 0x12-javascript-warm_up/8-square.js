@@ -16,7 +16,7 @@ if (args.length === 3) {
       }
     }
     console.log(str);
-  } else if (typeof (num) !== 'number') {
+  } else if (isNaN(num)) {
     console.log('Missing size');
   }
 } else if (args.length === 2) {
