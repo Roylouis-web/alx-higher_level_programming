@@ -8,7 +8,7 @@ if (args.length === 3) {
   if (num > 0) {
     for (let i = 0; i < num; i++) {
       for (let j = 0; j < num; j++) {
-        if (j === num - 1 && i != num - 1) {
+        if (j === num - 1 && i !== num - 1) {
           str += 'X\n';
         } else {
           str += 'X';

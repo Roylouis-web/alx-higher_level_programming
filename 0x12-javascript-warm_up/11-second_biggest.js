@@ -9,7 +9,6 @@ function max (array) {
   return max;
 }
 
-
 function secondBiggest (array) {
   if (array.length === 2 || array.length === 3) {
     console.log(0);
