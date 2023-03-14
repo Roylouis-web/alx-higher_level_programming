@@ -1,8 +1,4 @@
 #!/usr/bin/node
-/**
- * a script that prints x times “C is fun”
- */
-
 const process = require('process');
 const args = process.argv;
 

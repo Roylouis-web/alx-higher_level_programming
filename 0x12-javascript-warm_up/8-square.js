@@ -1,8 +1,4 @@
 #!/usr/bin/node
-/**
- * a script that prints a square
- */
-
 const process = require('process');
 const args = process.argv;
 

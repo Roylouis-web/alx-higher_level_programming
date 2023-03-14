@@ -1,8 +1,4 @@
 #!/usr/bin/node
-/**
- * a script that prints the first argument passed to it
- */
-
 const process = require('process');
 const args = process.argv;
 

@@ -1,15 +1,4 @@
 #!/usr/bin/node
-/**
- *  a script that searches the second biggest
- *  integer in the list of arguments.
- */
-
-/**
- *
- * @param {array parameter} array
- * @returns an integer
- */
-
 function max (array) {
   let max = array[0];
   array.forEach(element => {
@@ -20,10 +9,6 @@ function max (array) {
   return max;
 }
 
-/**
- *
- * @param {array parameter} array
- */
 
 function secondBiggest (array) {
   if (array.length === 2 || array.length === 3) {

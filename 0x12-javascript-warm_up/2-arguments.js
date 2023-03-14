@@ -1,9 +1,4 @@
 #!/usr/bin/node
-/**
- * a script that prints a message
- * depending of the number of arguments passed
- */
-
 const process = require('process');
 const args = process.argv;
 
