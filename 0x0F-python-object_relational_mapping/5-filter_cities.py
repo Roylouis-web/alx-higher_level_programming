@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-
-import sys
-import MySQLdb
-
 """
     a script that takes in the name of a state as
     an argument and lists all cities of that state,
@@ -10,7 +6,16 @@ import MySQLdb
 """
 
 
-def main(user_name, password, db_name, state_name):
+import sys
+import MySQLdb
+
+
+if __name__ == '__main__':
+    argv = sys.argv
+    user_name = argv[1]
+    password = argv[2]
+    db_name = argv[3]
+    state_name = argv[4]
     conn = MySQLdb.connect(
             host='localhost', port=3306,
             user=user_name, passwd=password,
@@ -40,12 +45,3 @@ def main(user_name, password, db_name, state_name):
 
     cur.close()
     conn.close()
-
-
-if __name__ == '__main__':
-    argv = sys.argv
-    user_name = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    state_name = argv[4]
-    main(user_name, password, db_name, state_name)
