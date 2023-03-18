@@ -7,14 +7,11 @@ import MySQLdb
 """
 
 
-def main(username, password, db_name):
-    """"
-       param:
-            username: The username of the mysql-server
-            password: The password
-            db_name: The name of the database
-    """
-
+if __name__ == '__main__':
+    argv = sys.argv
+    username = argv[1]
+    password = argv[2]
+    db_name = argv[3]
     conn = MySQLdb.connect(
             host="localhost", port=3306,
             user=username, passwd=password, db=db_name
@@ -27,11 +24,3 @@ def main(username, password, db_name):
         print(row)
     cur.close()
     conn.close()
-
-
-if __name__ == '__main__':
-    argv = sys.argv
-    username = argv[1]
-    password = argv[2]
-    db_name = argv[3]
-    main(username, password, db_name)
