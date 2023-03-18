@@ -8,6 +8,13 @@ import MySQLdb
 
 
 def main(username, password, db_name):
+    """"
+       param:
+            username: The username of the mysql-server
+            password: The password
+            db_name: The name of the database
+    """
+
     conn = MySQLdb.connect(
             host="localhost", port=3306,
             user=username, passwd=password, db=db_name
