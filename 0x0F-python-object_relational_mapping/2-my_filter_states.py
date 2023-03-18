@@ -24,8 +24,8 @@ if __name__ == '__main__':
             user=user_name, passwd=password,
             db=db_name)
     cur = conn.cursor()
-    cmd = "SELECT * FROM states WHERE name = %s ORDER BY id"
-    cur.execute(cmd, (state_name, ))
+    cmd = "SELECT * FROM states WHERE name = '{}' ORDER BY id"
+    cur.execute(cmd.format(state_name))
     rows = cur.fetchall()
 
     for row in rows:
