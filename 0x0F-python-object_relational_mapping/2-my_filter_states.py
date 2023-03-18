@@ -26,7 +26,7 @@ if __name__ == '__main__':
     cur = conn.cursor()
     cur.execute(
             """
-                SELECT * FROM states WHERE name = '{:s}'
+                SELECT * FROM states WHERE states.ame = '{:s}'
                 ORDER BY states.id ASC
             """.format(state_name)
             )
