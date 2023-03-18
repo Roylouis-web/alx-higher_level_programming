@@ -27,7 +27,7 @@ if __name__ == '__main__':
     cur.execute(
             """
                 SELECT * FROM states WHERE name = '{:s}'
-                ORDER BY id
+                ORDER BY states.id ASC
             """.format(state_name)
             )
     rows = cur.fetchall()
