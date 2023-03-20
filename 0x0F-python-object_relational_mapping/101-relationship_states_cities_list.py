@@ -22,5 +22,5 @@ if __name__ == '__main__':
 
     for state in session.query(State).all():
         print("{}: {}".format(state.id, state.name))
-        for city in state.city:
+        for city in state.cities:
             print("\t{}: {}".format(city.id, city.name))
