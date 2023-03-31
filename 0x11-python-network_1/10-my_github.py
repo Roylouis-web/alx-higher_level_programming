@@ -1,16 +1,22 @@
 #!/usr/bin/python3
+"""script for posting data to star wars api
 """
-    a Python script that takes your GitHub
-    credentials (username and password)
-    and uses the GitHub API to display your id
-"""
-
-
-from requests.auth import HTTPBasicAuth
-import requests
-import sys
-
-
-response = requests.get('https://api.github.com/user',
-                        auth=HTTPBasicAuth(sys.argv[1], sys.argv[2]))
-print(response.json()['id'])
+if __name__ == "__main__":
+    import requests
+    from requests.auth import HTTPBasicAuth
+    import sys
+    url = "https://api.github.com/"
+    user_url = url + "user"
+    username = sys.argv[1]
+    password = sys.argv[2]
+    response = requests.get(user_url,
+                            auth=HTTPBasicAuth(username,
+                                               password))
+    if response.status_code == requests.codes.ok and len(response.text) > 0:
+        try:
+            my_obj = response.json()
+            print(my_obj.get('id'))
+        except ValueError as invalid_json:
+            print('Not a valid JSON')
+    else:
+        print(None)

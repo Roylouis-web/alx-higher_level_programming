@@ -1,14 +1,12 @@
 #!/usr/bin/python3
+"""script for posting data to web servers
 """
-    a Python script that takes in a URL,
-    sends a request to the URL
-    and displays the body of the response.
-"""
-
-
-import requests
-import sys
-
-
-response = requests.get(sys.argv[1])
-print('Error code: {}'.format(response.status_code))
+if __name__ == "__main__":
+    import requests
+    import sys
+    url = sys.argv[1]
+    response = requests.get(url)
+    if response.status_code != requests.codes.ok:
+        print('Error code: {}'.format(response.status_code))
+    else:
+        print(response.text)

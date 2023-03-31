@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-"""script for posting data to web servers
+"""script for posting data to star wars api
 """
 if __name__ == "__main__":
     import requests
     import sys
-    url = "http://0.0.0.0:5000/search_user"
+    url = "https://swapi.co/api/people/"
+    search_url = url + "?search="
     if len(sys.argv) > 1:
-        q = sys.argv[1]
+        search_url += sys.argv[1]
     else:
-        q = ""
-    query = {'q': q}
-    response = requests.post(url, data=query)
+        search_url = url
+    response = requests.get(search_url)
     if response.status_code != requests.codes.ok or len(response.text) <= 0:
         print('No result')
         sys.exit()
@@ -20,8 +20,9 @@ if __name__ == "__main__":
             if len(my_obj) == 0:
                 print('No result')
                 sys.exit()
-            my_id = my_obj.get('id')
-            my_name = my_obj.get('name')
-            print("[{}] {}".format(my_id, my_name))
+            print('Number of results: {}'.format(my_obj.get('count')))
+            results = my_obj.get('results')
+            for result in results:
+                print(result.get('name'))
         except ValueError as invalid_json:
             print('Not a valid JSON')
