@@ -12,4 +12,5 @@ import sys
 
 
 with urllib.request.urlopen(sys.argv[1]) as f:
-    print(f.getheader('X-Request-Id'))
+    header = f.getheader('X-Request-Id')
+print(header)
